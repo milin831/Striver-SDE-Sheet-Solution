@@ -1,0 +1,23 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution 
+{
+    public static void swap(int[] arr,int i, int j){
+        int temp=arr[i];
+        arr[i]=arr[j];
+        arr[j]=temp;
+    }
+    public static void sort012(int[] arr)
+    {
+        int zero_index=0,two_index=arr.length-1,i=0;
+        while(i<=two_index){
+            if(arr[i]==0){
+                swap(arr,zero_index++,i++);
+            }else if(arr[i]==2){
+                swap(arr,two_index--,i);
+            }else{
+                i++;
+            }
+        }
+    }
+}
