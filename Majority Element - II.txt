@@ -1,0 +1,43 @@
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+
+public class Solution {
+    
+    public static boolean check(ArrayList<Integer> arr,int val){
+        int count=0;
+        for(int i:arr){
+            if(i==val) count++;
+        }
+        return count>arr.size()/3;
+    }
+    
+    public static ArrayList<Integer> majorityElementII(ArrayList<Integer> arr){
+        int value1=arr.get(0),value2=arr.get(0);
+        int count1=1,count2=0,i=1;
+        while(i<arr.size()){
+            if(arr.get(i)==value1) count1++;
+            else if(arr.get(i)==value2) count2++;
+            else{
+                if(count1==0){
+                    value1=arr.get(i);
+                    count1=1;
+                }else if(count2==0){
+                    value2=arr.get(i);
+                    count2=1;
+                }else{
+                    count1--;
+                    count2--;
+                }
+            }
+            i++;
+        }
+        ArrayList<Integer> arrList=new ArrayList<Integer>();
+        
+        if(check(arr,value1)==true)
+            arrList.add(value1);
+        if(value1!=value2 && check(arr,value2)==true)
+            arrList.add(value2);
+        return arrList;
+    }
+}
