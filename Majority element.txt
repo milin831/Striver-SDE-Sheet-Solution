@@ -1,0 +1,22 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+	public static int findMajority(int[] arr, int n) {
+		int ansIndex=0;
+        int ans=1;
+        for(int i=1;i<n;i++){
+            if(arr[i]==arr[ansIndex]) ans++;
+            else ans--;
+            if(ans==0){
+                ansIndex=i;
+                ans=1;
+            }
+        }
+        ans=0;
+        for(int i=0;i<n;i++){
+            if(arr[i]==arr[ansIndex]) ans++;
+        }
+        if(ans>n/2) return arr[ansIndex];
+        return -1;
+	}
+}
