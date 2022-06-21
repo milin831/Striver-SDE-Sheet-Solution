@@ -1,0 +1,54 @@
+import java.util.* ;
+import java.io.*; 
+/************************************************************
+
+    Following is the linked list node structure:
+    
+    class LinkedListNode<T> {
+        T data;
+        LinkedListNode<T> next;
+
+        public LinkedListNode(T data) {
+            this.data = data;
+        }
+    }
+
+************************************************************/
+
+public class Solution {
+	public static LinkedListNode<Integer> sortTwoLists(LinkedListNode<Integer> first, LinkedListNode<Integer> second) {
+		LinkedListNode<Integer> fh=null;
+        LinkedListNode<Integer> ft=null;
+        if(first==null)
+            return second;
+        if(second==null)
+            return first;
+        if(first.data<second.data){
+            fh=first;
+            ft=first;
+            first=first.next;
+        }else{
+            fh=second;
+            ft=second;
+            second=second.next;
+        }
+        while(first!=null && second!=null){
+            if(first.data<second.data){
+                ft.next=first;
+                ft=ft.next;
+                first=first.next;
+            }else{
+                ft.next=second;
+                ft=ft.next;
+                second=second.next;
+            }
+        }
+        if(first!=null){
+            ft.next=first;
+        }
+        if(second!=null){
+            ft.next=second;
+        }
+        return fh;
+	}
+}
